@@ -20,6 +20,9 @@ let numberOne;
 let numberOperator;
 let numberTwo;
 
+function operate(anOperator, num1, num2) {
+    return anOperator(num1, num2);
+};
 
 /* What I want the calculator to do
 -Display
