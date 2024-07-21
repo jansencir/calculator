@@ -15,6 +15,11 @@ function divideNum(firstVal, secondVal) {
     return firstVal / secondVal;
 };
 
+// Variable for Three Parts
+let numberOne;
+let numberOperator;
+let numberTwo;
+
 
 /* What I want the calculator to do
 -Display
