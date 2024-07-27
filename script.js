@@ -6,16 +6,15 @@ let currentDisplay = "";
 
 const calculate = (one, op, two) => {
     let first = parseFloat(one)
-    let operator = op
     let second = parseFloat(two)
-    switch (operator) {
+    switch (op) {
         case "+": return first + second;
         case "-": return first - second;
         case "x": return first * second;
         case "÷": return first / second;
     }
 }
-// can i delete "let operator = op" and change it to "switch(op)"???
+// console.log(calculate(numberOne, numberOperator, numberTwo));
 /* TESTERS
 let numberOne = "3";
 let numberOperator = "+";
