@@ -1,19 +1,8 @@
-// Basic Calculator Functions
-function addNum(firstVal, secondVal) {
-    return firstVal + secondVal;
-};
-
-function subtractNum(firstVal, secondVal) {
-    return firstVal - secondVal;
-}
-
-function multiplyNum(firstVal, secondVal) {
-    return firstVal * secondVal;
-}
-
-function divideNum(firstVal, secondVal) {
-    return firstVal / secondVal;
-};
+let numberOne = "";
+let numberOperator = "";
+let numberTwo = "";
+let previousDisplay = "";
+let currentDisplay = "";
 
 const calculate = (one, op, two) => {
     let first = parseFloat(one)
@@ -26,18 +15,13 @@ const calculate = (one, op, two) => {
         case "÷": return first / second;
     }
 }
+// can i delete "let operator = op" and change it to "switch(op)"???
 /* TESTERS
 let numberOne = "3";
 let numberOperator = "+";
 let numberTwo = "3";
 */
 
-// Variable for Three Parts
-let numberOne = "";
-let numberOperator = "";
-let numberTwo = "";
-let previousDisplay = "";
-let currentDisplay = "";
 
 const calculatorOperators = document.querySelectorAll(".anOperator");
 const calculatorNumbers = document.querySelectorAll(".aNumber");
