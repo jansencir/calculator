@@ -32,6 +32,16 @@ const appendNumber = (number) => {
         calculatorCurrentDisplay.textContent = numberTwo
     }
 }
+
+const chooseOperator = (operator) => {
+    if (numberOperator != "") return
+    if (numberOperator == "") {
+        numberOperator += operator.innerText
+        console.log(numberOperator)
+    }
+}
+
+
 const calculatorOperators = document.querySelectorAll(".anOperator");
 const calculatorNumbers = document.querySelectorAll(".aNumber");
 const calculatorDecimal = document.querySelector("#decimalBtn");
@@ -42,7 +52,9 @@ const calculatorPreviousDisplay = document.querySelector("#previous-display");
 const calculatorCurrentDisplay = document.querySelector("#current-display");
 
 calculatorOperators.forEach(operator => {
-    operator.addEventListener("click", () => console.log("operator clicked"))
+    operator.addEventListener("click", () => {
+        chooseOperator(operator)
+    })
 })
 
 // calculatorNumbers.forEach(number => {
