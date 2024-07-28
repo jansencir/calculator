@@ -21,7 +21,17 @@ let numberOperator = "+";
 let numberTwo = "3";
 */
 
-
+const appendNumber = (number) => {
+    // click needs to pass number
+    if (numberOperator == "") {
+        numberOne += number.innerText
+        calculatorPreviousDisplay.textContent = numberOne
+    }
+    if (numberOperator != "") {
+        numberTwo += number.innerText
+        calculatorCurrentDisplay.textContent = numberTwo
+    }
+}
 const calculatorOperators = document.querySelectorAll(".anOperator");
 const calculatorNumbers = document.querySelectorAll(".aNumber");
 const calculatorDecimal = document.querySelector("#decimalBtn");
@@ -43,15 +53,7 @@ calculatorDecimal.addEventListener("click", () => console.log("decimal clicked")
 
 calculatorPositiveNegative.addEventListener("click", () => console.log("positive/negative clicked"))
 
-// calculatorClear.addEventListener("click", () => console.log("clear clicked"))
-function clearAll() {
-    previousDisplay = "";
-    currentDisplay = "";
-    calculatorPreviousDisplay.textContent = previousDisplay;
-    calculatorCurrentDisplay.textContent = currentDisplay;
-}
-
-calculatorClear.addEventListener("click", () => clearAll())
+calculatorClear.addEventListener("click", () => console.log("clear clicked"))
 
 calculatorEqual.addEventListener("click", () => console.log("equal clicked"))
 
@@ -67,12 +69,20 @@ calculatorEqual.addEventListener("click", () => console.log("equal clicked"))
 // Compute Current Function
 // Switch Sign
 
+// --------------------------------------------------
+// calculatorNumbers.forEach(number => {
+//     number.addEventListener("click", () => {
+//         numberOne += number.innerText
+//         calculatorCurrentDisplay.textContent = numberOne
+//     })
+// })
+
 calculatorNumbers.forEach(number => {
     number.addEventListener("click", () => {
-        numberOne += number.innerText
-        calculatorCurrentDisplay.textContent = numberOne
+        appendNumber(number)
     })
 })
+// --------------------------------------------------
 
 // REMAP EVERYTHING AND CLEAN UP A LITTLE
 // FIGURE OUT HOW TO LINK SPECIFIC FUNCTIONS TO EVENT LISTENERS
