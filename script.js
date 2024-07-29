@@ -25,11 +25,9 @@ const appendNumber = (number) => {
     // click needs to pass number
     if (numberOperator == "") {
         numberOne += number.innerText
-        calculatorPreviousDisplay.textContent = numberOne
     }
     if (numberOperator != "") {
         numberTwo += number.innerText
-        calculatorCurrentDisplay.textContent = numberTwo
     }
 }
 
@@ -37,7 +35,61 @@ const chooseOperator = (operator) => {
     if (numberOperator != "") return
     if (numberOperator == "") {
         numberOperator += operator.innerText
-        console.log(numberOperator)
+    }
+}
+
+
+// REMAP, but if function inside the event listener?
+// make two new functions, positiveToNegative and negativeToPositive
+// if numberOne or numberTwo is positive, run positiveToNegative
+// if numberOne or numberTwo is NEGATIVE, run negativeToPositive
+const changeSign = () => {
+    // positive to negative
+    if (numberOperator == "" && numberOne.charAt(0) != "-") {
+        numberOne = "-" + numberOne
+    }
+    if (numberOperator != "" && numberTwo.charAt(0) != "-") {
+        numberTwo = "-" + numberTwo
+    }
+    // negative to positive
+    if (numberOperator == "" && numberOne.charAt(0) == "-") {
+        numberOne = numberOne.split("").splice(1).join("")
+    }
+    if (numberOperator != "" && numberTwo.charAt(0) == "-")
+        numberTwo.split("").splice(1).join("")
+}
+
+
+// GOOD positive to negative
+// let randomNumber = "-111"
+// if (randomNumber.charAt(0) != "-") {
+//     randomNumber = "-" + randomNumber
+//     console.log(randomNumber)
+// } else {
+//     console.log(randomNumber)
+// }
+
+// GOOD negative to positive
+let randomNum = "-111"
+function checkSign(str) {
+    if (str.charAt(0) == "-") {
+        str = str.split("").splice(1).join("")
+    }
+    console.log(str)
+}
+
+/* UPDATE DISPLAY
+    -if numberOperator == "", currentDisplay = numberOne
+    -if numberOperator != "", previousDisplay = `numberOne numberOperator` ; currentDisplay = `numberTwo`
+
+*/
+const updateDisplay = () => {
+    if (numberOperator == "") {
+        calculatorCurrentDisplay.textContent = `${numberOne}`
+    }
+    if (numberOperator != "") {
+        calculatorPreviousDisplay.textContent = `${numberOne} ${numberOperator}`
+        calculatorCurrentDisplay.textContent = `${numberTwo}`
     }
 }
 
@@ -54,6 +106,7 @@ const calculatorCurrentDisplay = document.querySelector("#current-display");
 calculatorOperators.forEach(operator => {
     operator.addEventListener("click", () => {
         chooseOperator(operator)
+        updateDisplay()
     })
 })
 
@@ -63,7 +116,8 @@ calculatorOperators.forEach(operator => {
 
 calculatorDecimal.addEventListener("click", () => console.log("decimal clicked"))
 
-calculatorPositiveNegative.addEventListener("click", () => console.log("positive/negative clicked"))
+calculatorPositiveNegative.addEventListener("click", () => changeSign())
+// calculatorPositiveNegative.addEventListener("click", () => console.log("positive/negative clicked"))
 
 calculatorClear.addEventListener("click", () => console.log("clear clicked"))
 
@@ -92,6 +146,7 @@ calculatorEqual.addEventListener("click", () => console.log("equal clicked"))
 calculatorNumbers.forEach(number => {
     number.addEventListener("click", () => {
         appendNumber(number)
+        updateDisplay()
     })
 })
 // --------------------------------------------------
