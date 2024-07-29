@@ -130,7 +130,6 @@ calculatorPositiveNegative.addEventListener("click", () => {
 calculatorClear.addEventListener("click", () => {
     if (calculatorClear.innerText == "CLR") {clearDisplay()}
     if (calculatorClear.innerText == "ALL CLR") {clearAllDisplay()}
-    console.log("clear clicked")
     updateDisplay()
     clearTextDisplay()
 })
