@@ -1,20 +1,31 @@
 let numberOne = "";
 let numberOperator = "";
 let numberTwo = "";
+let answer;
 
 const calculate = (one, op, two) => {
     let first = parseFloat(one)
     let second = parseFloat(two)
     switch (op) {
-        case "+": return first + second;
-        case "-": return first - second;
-        case "x": return first * second;
-        case "÷": return first / second;
+        case "+":
+            answer = first + second
+            break
+        case "-":
+            answer = first - second
+            break
+        case "x":
+            answer = first * second
+            break
+        case "÷":
+            answer = first / second
+            break
     }
+    console.log(first)
+    console.log(second)
+    console.log(answer)
 }
 
 const appendNumber = (number) => {
-    // click needs to pass number
     if (numberOperator == "") {
         numberOne += number.innerText
     }
@@ -76,6 +87,10 @@ const updateDisplay = () => {
         calculatorPreviousDisplay.textContent = `${numberOne} ${numberOperator}`
         calculatorCurrentDisplay.textContent = `${numberTwo}`
     }
+    if (answer != undefined) {
+        calculatorPreviousDisplay.textContent = `${numberOne} ${numberOperator} ${numberTwo}`
+        calculatorCurrentDisplay.textContent = `${answer}`
+    }
 }
 
 // CLEAR ALL CLEAR DISPLAY
@@ -130,7 +145,10 @@ calculatorClear.addEventListener("click", () => {
     clearTextDisplay()
 })
 
-calculatorEqual.addEventListener("click", () => console.log("equal clicked"))
+calculatorEqual.addEventListener("click", () => {
+    calculate(numberOne, numberOperator, numberTwo)
+    updateDisplay()
+})
 
 calculatorNumbers.forEach(number => {
     number.addEventListener("click", () => {
