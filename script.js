@@ -34,6 +34,23 @@ const appendNumber = (number) => {
     }
 }
 
+const appendDecimal = () => {
+    if (numberOperator == "") {
+        if (numberOne.includes(".")) {
+            return
+        } else {
+        numberOne += "."
+        }
+    }
+    if (numberOperator != "") {
+        if (numberTwo.includes(".")) {
+            return
+        } else {
+        numberTwo += "."
+        }
+    }
+}
+
 const chooseOperator = (operator) => {
     if (numberOperator != "" || numberOne == "") return
     else {numberOperator += operator.innerText}
@@ -132,7 +149,10 @@ calculatorOperators.forEach(operator => {
     })
 })
 
-calculatorDecimal.addEventListener("click", () => console.log("decimal clicked"))
+calculatorDecimal.addEventListener("click", () => {
+    appendDecimal()
+    updateDisplay()
+})
 
 calculatorPositiveNegative.addEventListener("click", () => changeSign())
 
@@ -159,3 +179,11 @@ calculatorNumbers.forEach(number => {
 })
 
 clearTextDisplay()
+
+
+/* CURRENT ISSUES
+    -clear button broken after clicking equal
+    -can't chain answer to continue calculations
+    -positive/negative still doesn't work
+    -decimal point still doesn't work
+*/
