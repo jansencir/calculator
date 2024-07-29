@@ -20,9 +20,6 @@ const calculate = (one, op, two) => {
             answer = first / second
             break
     }
-    console.log(first)
-    console.log(second)
-    console.log(answer)
 }
 
 const appendNumber = (number) => {
@@ -56,44 +53,10 @@ const chooseOperator = (operator) => {
     else {numberOperator += operator.innerText}
 }
 
-
-// REMAP, but if function inside the event listener?
-// make two new functions, positiveToNegative and negativeToPositive
-// if numberOne or numberTwo is positive, run positiveToNegative
-// if numberOne or numberTwo is NEGATIVE, run negativeToPositive
-// const changeSign = () => {
-//     // positive to negative
-//     if (numberOperator == "" && numberOne.charAt(0) != "-") {
-//         numberOne = "-" + numberOne
-//     }
-//     if (numberOperator != "" && numberTwo.charAt(0) != "-") {
-//         numberTwo = "-" + numberTwo
-//     }
-//     // negative to positive
-//     if (numberOperator == "" && numberOne.charAt(0) == "-") {
-//         numberOne = numberOne.split("").splice(1).join("")
-//     }
-//     if (numberOperator != "" && numberTwo.charAt(0) == "-")
-//         numberTwo.split("").splice(1).join("")
-// }
-
-
-// GOOD positive to negative
-// let randomNumber = "-111"
-// if (randomNumber.charAt(0) != "-") {
-//     randomNumber = "-" + randomNumber
-//     console.log(randomNumber)
-// } else {
-//     console.log(randomNumber)
-// }
-
-// GOOD negative to positive
-let randomNum = "-111"
-function checkSign(str) {
-    if (str.charAt(0) == "-") {
-        str = str.split("").splice(1).join("")
-    }
-    console.log(str)
+const changeSign = (number) => {
+    flipSign = -(number)
+    number = flipSign
+    return number
 }
 
 const updateDisplay = () => {
@@ -110,7 +73,6 @@ const updateDisplay = () => {
     }
 }
 
-// CLEAR ALL CLEAR DISPLAY
 const clearDisplay = () => {
     calculatorCurrentDisplay.textContent = "";
     numberTwo = "";
@@ -154,7 +116,15 @@ calculatorDecimal.addEventListener("click", () => {
     updateDisplay()
 })
 
-calculatorPositiveNegative.addEventListener("click", () => changeSign())
+calculatorPositiveNegative.addEventListener("click", () => {
+    if (numberOperator == "") {
+        numberOne = changeSign(numberOne)
+    }
+    if (numberOperator != "") {
+        numberTwo = changeSign(numberTwo)
+    }
+    updateDisplay()
+})
 
 
 calculatorClear.addEventListener("click", () => {
@@ -178,12 +148,7 @@ calculatorNumbers.forEach(number => {
     })
 })
 
-clearTextDisplay()
-
-
 /* CURRENT ISSUES
     -clear button broken after clicking equal
     -can't chain answer to continue calculations
-    -positive/negative still doesn't work
-    -decimal point still doesn't work
 */
